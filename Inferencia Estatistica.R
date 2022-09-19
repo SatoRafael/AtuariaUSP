@@ -3,10 +3,10 @@ amostra = c(155,155,136,154,172,160,159,165,159,137,152,178,138,144,167,126,149,
 
 #INTERVALO DE CONFIANCA - VARIANCIA DESCONHECIDA
 ic_vd <- function(conf,amostra){
-w <- conf #confiança dada 
+w <- conf #confianÃ§a dada 
 o <-  var(amostra)
 n <- length(amostra)
-m <- mean(amostra) #média
+m <- mean(amostra) #mÃ©dia
 t = qt(((1-w)/2), df = (n-1))
 liminf <- m + t*sqrt(o/n)
 limsup <- m - t*sqrt(o/n)
@@ -14,7 +14,7 @@ print(c(liminf,limsup))
 }
 ic_vd(0.9,amostra)
 
-#INTERVALO DE CONFIANÇA PARA SIGMA
+#INTERVALO DE CONFIANÃ‡A PARA SIGMA
 ic_sig <- function(conf,amostra){
   w <- conf
   o <- var((amostra))
@@ -26,7 +26,7 @@ ic_sig <- function(conf,amostra){
 }
 ic_sig(0.77,amostra)
 
-#P-valor para média desconhecida 
+#P-valor para mÃ©dia desconhecida 
 xbarra <- mean(amostra)
 n <- length(amostra)
 s <- sqrt(var(amostra))
@@ -48,32 +48,3 @@ x = c(0,1,0,1,0,1,1,1,0,1,0,0,0,1,0)
 n = length(x) 
 plot(L)
 abline(v=mean(x))
-
-
-
-
-
-
-
-
-
-dataset <- data(mtcars)
-mtcars$carname <- row.names(mtcars)
-
-#Importando o pacote
-install.packages('ggplot2')
-library('ggplot2')
-
-#Realizando a plotagem
-ggplot(mtcars)+ #Origem dos dados
-  geom_point(aes(x = hp, y = mpg), color = 'blue')+ #Tipo de gráfico e definição dos eixos
-  labs(x = 'Potência (cavalos)',
-    y = 'Consumo (milhas/litro)',
-    title = 'Relação entre consumo de gasolina e potência do motor') #Legendas do gráfico
-
-ggplot(mtcars)+
-  geom_col(aes(x= carname, y = mpg))+
-  labs(x = 'Modelo',
-       y = 'Consumo',
-       title = 'Consumo por modelo')+
-  theme(axis.text.x = element_text(angle= 60, hjust = 1)) #Ângulo da legenda
